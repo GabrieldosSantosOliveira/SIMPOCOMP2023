@@ -22,7 +22,7 @@ export class AddUserController implements Controller {
   ): Promise<HttpResponse<any>> {
     const isInvalidBody = await this.validationBody.validate(request.body)
     if (isInvalidBody) {
-      return badRequest(isInvalidBody.message)
+      return badRequest({ message: isInvalidBody.message })
     }
     const user = request.body
     const { accessToken } = await this.addUserUseCase.execute({

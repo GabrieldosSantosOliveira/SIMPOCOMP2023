@@ -4,8 +4,6 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "outDir": "./dist",
-    "removeComments": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -17,10 +15,13 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "@/data/*": ["./src/data/*"],
+      "@/data/*": ["./src/data/*"],   
+      "@/helpers/*": ["./src/helpers/*"],
       "@/domain/*": ["./src/domain/*"],
+      "@/infra/*": ["./src/infra/*"],
       "@/main/*": ["./src/main/*"],
       "@/presentation/*": ["./src/presentation/*"],
+      "@/validations/*": ["./src/validations/*"]
     }
   }
 }

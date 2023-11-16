@@ -1,4 +1,4 @@
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
+import { BlankError } from '@/presentation/errors/blank-error'
 import { MissingParamError } from '@/presentation/errors/missing-param-error'
 import { type Validation } from '@/presentation/protocols/validation'
 
@@ -11,7 +11,7 @@ export class NotBlankValidation implements Validation {
       if (valueTrim) {
         return null
       }
-      return new InvalidParamError(this.fieldName)
+      return new BlankError(this.fieldName)
     }
     if (
       input[this.fieldName] ||

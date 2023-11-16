@@ -1,3 +1,4 @@
+import { ServerError } from '../errors/server-error'
 import { type HttpResponse } from '../protocols/http/http-response'
 import { HttpStatus } from './http-status'
 
@@ -13,9 +14,9 @@ export const badRequest = (body: any): HttpResponse => {
     statusCode: HttpStatus.BAD_REQUEST,
   }
 }
-export const serverError = (body: any): HttpResponse => {
+export const serverError = (): HttpResponse => {
   return {
-    body,
+    body: new ServerError(),
     statusCode: HttpStatus.SERVER_ERROR,
   }
 }
@@ -23,5 +24,11 @@ export const noContent = (): HttpResponse => {
   return {
     body: null,
     statusCode: HttpStatus.NO_CONTENT,
+  }
+}
+export const conflict = (body: any): HttpResponse => {
+  return {
+    body,
+    statusCode: HttpStatus.CONFLICT,
   }
 }

@@ -1,4 +1,4 @@
-import { UserAlreadyExists } from '@/domain/errors/user-already-exists'
+import { UserAlreadyExistsException } from '@/domain/errors/user-already-exists-exception'
 import { type AddUserRepository } from '@/domain/repositories/add-user-repository'
 import { type LoadUserByEmailRepository } from '@/domain/repositories/load-user-by-email-repository'
 import { type AddUserUseCase } from '@/domain/use-cases/add-user'
@@ -19,9 +19,10 @@ export class AddUserUseCaseImpl implements AddUserUseCase {
   async execute(user: AddUserUseCase.Params): Promise<AddUserUseCase.Result> {
     const isUserAlreadyExists =
       await this.loadUserByEmailRepository.findByEmail(user.email)
-    if (!isUserAlreadyExists) {
-      throw new UserAlreadyExists()
+    if (isUserAlreadyExists) {
+      throw new UserAlreadyExistsException()
     }
+
     const passwordHash = await this.bcrypt.hash(user.password)
     const id = await this.generatorUUID.randomUUID()
     await this.addUserRepository.add({

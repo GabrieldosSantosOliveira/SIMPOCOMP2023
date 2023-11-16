@@ -1,4 +1,4 @@
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
+import { RequiredStringError } from '@/presentation/errors/required-string-error'
 import { type Validation } from '@/presentation/protocols/validation'
 
 export class StringValidation implements Validation {
@@ -7,6 +7,6 @@ export class StringValidation implements Validation {
     if (typeof input[this.fieldName] === 'string') {
       return null
     }
-    return new InvalidParamError(this.fieldName)
+    return new RequiredStringError(this.fieldName)
   }
 }

@@ -1,4 +1,9 @@
 export interface TokenGenerator {
-  verify: () => Promise<boolean>
-  generate: (subject: string, claims: Record<string, any>) => Promise<string>
+  verify: (chiphertext: string, secretKey: string) => Promise<boolean>
+  encrypt: (
+    secretKey: string,
+    durationInSeconds: number,
+    claims: Record<string, any>,
+  ) => Promise<string>
+  decrypt: (chiphertext: string) => Promise<Record<string, any> | null>
 }

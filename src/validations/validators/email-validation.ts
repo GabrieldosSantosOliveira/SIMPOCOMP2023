@@ -1,4 +1,4 @@
-import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
+import { RequiredEmailError } from '@/presentation/errors/required-email-error'
 import { type Validation } from '@/presentation/protocols/validation'
 
 import { type EmailValidator } from '../protocols/email-validator'
@@ -15,7 +15,7 @@ export class EmailValidation implements Validation {
       if (isValid) {
         return null
       }
-      return new InvalidParamError(this.fieldName)
+      return new RequiredEmailError(this.fieldName)
     }
     return null
   }

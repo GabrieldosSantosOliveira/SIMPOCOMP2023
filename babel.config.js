@@ -17,9 +17,12 @@ module.exports = {
       {
         alias: {
           '@/data': './src/data',
+          '@/helpers': './src/helpers',
           '@/domain': './src/domain',
+          '@/infra': './src/infra',
           '@/main': './src/main',
           '@/presentation': './src/presentation',
+          '@/validations': './src/validations',
         },
       },
     ],
