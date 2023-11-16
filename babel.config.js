@@ -1,6 +1,5 @@
 module.exports = {
   presets: [
-    '@babel/preset-typescript',
     [
       '@babel/preset-env',
       {
@@ -9,17 +8,18 @@ module.exports = {
         },
       },
     ],
+    '@babel/preset-typescript',
   ],
   plugins: [
     '@babel/plugin-transform-strict-mode',
-    ['@babel/plugin-transform-typescript', { allowDeclareFields: true }],
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
-    '@babel/plugin-proposal-class-properties',
     [
       'module-resolver',
       {
         alias: {
+          '@/data': './src/data',
+          '@/domain': './src/domain',
           '@/main': './src/main',
+          '@/presentation': './src/presentation',
         },
       },
     ],
