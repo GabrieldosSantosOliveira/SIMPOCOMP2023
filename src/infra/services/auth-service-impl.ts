@@ -19,7 +19,7 @@ export class AuthServiceImpl implements AuthService {
     return accessToken
   }
 
-  async validateAccessToken(accessToken: string): Promise<boolean> {
+  async verifyAccessToken(accessToken: string): Promise<boolean> {
     const isValid = await this.tokenGenerator.verify(
       accessToken,
       this.SECRET_ACCESS_TOKEN_KEY,
@@ -34,7 +34,7 @@ export class AuthServiceImpl implements AuthService {
     if (!payload) {
       throw new Error('no has payload')
     }
-    const id = payload.id
+    const id = payload.subject
     return id
   }
 }

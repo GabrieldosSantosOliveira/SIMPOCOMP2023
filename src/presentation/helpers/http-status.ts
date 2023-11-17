@@ -7,4 +7,5 @@ export const enum HttpStatus {
   NOT_FOUND = 404,
   FORBIDDEN = 403,
   NO_CONTENT = 204,
+  CREATED = 201,
 }

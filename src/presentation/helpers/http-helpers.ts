@@ -8,6 +8,12 @@ export const ok = (body: any): HttpResponse => {
     statusCode: HttpStatus.OK,
   }
 }
+export const created = (body: any): HttpResponse => {
+  return {
+    body,
+    statusCode: HttpStatus.CREATED,
+  }
+}
 export const badRequest = (body: any): HttpResponse => {
   return {
     body,

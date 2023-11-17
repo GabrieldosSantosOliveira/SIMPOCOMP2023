@@ -1,6 +1,6 @@
 import { type AddUserUseCase } from '@/domain/use-cases/add-user'
 
-import { badRequest, ok } from '../helpers/http-helpers'
+import { badRequest, created } from '../helpers/http-helpers'
 import { type Controller } from '../protocols/controller'
 import { type HttpRequest } from '../protocols/http/http-request'
 import { type HttpResponse } from '../protocols/http/http-response'
@@ -31,6 +31,6 @@ export class AddUserController implements Controller {
       lastName: user.lastName,
       password: user.password,
     })
-    return ok({ accessToken })
+    return created({ accessToken })
   }
 }

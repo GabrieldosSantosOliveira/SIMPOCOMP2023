@@ -21,7 +21,9 @@
       "@/infra/*": ["./src/infra/*"],
       "@/main/*": ["./src/main/*"],
       "@/presentation/*": ["./src/presentation/*"],
-      "@/validations/*": ["./src/validations/*"]
+      "@/validations/*": ["./src/validations/*"],
+      "@/test/*": ["./test/*"]
+
     }
   }
 }
