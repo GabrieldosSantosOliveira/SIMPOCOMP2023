@@ -9,7 +9,7 @@
     "lint:fix": "eslint . --fix",
     "test:integration": "npm run test -- -c jest-integration-config.js --watch",
     "test:unit": "npm run test -- -c jest-unit-config.js --watch",
-    "test": "jest --passWithNoTests --runInBand --verbose",
+    "test": "jest --passWithNoTests --verbose",
     "test:ci": "npm test -- --coverage",
     "check": "tsc --noEmit"
   },
