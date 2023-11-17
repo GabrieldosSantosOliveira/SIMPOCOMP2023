@@ -7,7 +7,10 @@
     "build": "rimraf ./dist && babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "jest --verbose --passWithNoTests ",
+    "test:integration": "npm run test -- -c jest-integration-config.js --watch",
+    "test:unit": "npm run test -- -c jest-unit-config.js --watch",
+    "test": "jest --passWithNoTests --runInBand --verbose",
+    "test:ci": "npm test -- --coverage",
     "check": "tsc --noEmit"
   },
   "author": "Gabriel dos Santos Oliveira <gabrielsantosoliveira951@gmail.com>",

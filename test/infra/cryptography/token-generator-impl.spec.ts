@@ -1,4 +1,5 @@
 import { TokenGeneratorImpl } from '@/infra/cryptography/token-generator-impl'
+import { throwError } from '@/test/domain/mocks/test-helpers'
 import { faker } from '@faker-js/faker'
 import jwt from 'jsonwebtoken'
 const SECRET = faker.lorem.words()
@@ -52,9 +53,7 @@ describe('TokenGeneratorImpl', () => {
     })
     it('should throw error if jsonwebtoken throw error', async () => {
       const { sut } = await makeSut()
-      jest.spyOn(jwt, 'sign').mockImplementation(() => {
-        throw new Error()
-      })
+      jest.spyOn(jwt, 'sign').mockImplementation(throwError)
       await expect(sut.encrypt(SECRET, DURATION, { id })).rejects.toThrow()
     })
   })
@@ -83,9 +82,7 @@ describe('TokenGeneratorImpl', () => {
     })
     it('should throw error if jsonwebtoken throw error', async () => {
       const { sut, token } = await makeSut()
-      jest.spyOn(jwt, 'decode').mockImplementation(() => {
-        throw new Error()
-      })
+      jest.spyOn(jwt, 'decode').mockImplementation(throwError)
       await expect(sut.decrypt(token)).rejects.toThrow()
     })
   })
@@ -108,9 +105,7 @@ describe('TokenGeneratorImpl', () => {
     })
     it('should return false when verify fails', async () => {
       const { sut, token } = await makeSut()
-      jest.spyOn(jwt, 'verify').mockImplementation(() => {
-        throw new Error()
-      })
+      jest.spyOn(jwt, 'verify').mockImplementation(throwError)
       const isValid = await sut.verify(token, SECRET)
       expect(isValid).toBe(false)
     })

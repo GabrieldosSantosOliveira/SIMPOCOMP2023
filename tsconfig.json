@@ -23,7 +23,6 @@
       "@/presentation/*": ["./src/presentation/*"],
       "@/validations/*": ["./src/validations/*"],
       "@/test/*": ["./test/*"]
-
     }
   }
 }

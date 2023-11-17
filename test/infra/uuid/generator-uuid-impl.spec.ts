@@ -1,4 +1,5 @@
 import { GeneratorUUIDImpl } from '@/infra/uuid/generator-uuid-impl'
+import { throwError } from '@/test/domain/mocks/test-helpers'
 import crypto from 'crypto'
 const makeSut = () => {
   const sut = new GeneratorUUIDImpl()
@@ -13,9 +14,7 @@ describe('GeneratorUUIDImpl', () => {
   it('should throw error if randomUUID throw error', async () => {
     const { sut } = makeSut()
 
-    jest.spyOn(crypto, 'randomUUID').mockImplementation(() => {
-      throw new Error()
-    })
+    jest.spyOn(crypto, 'randomUUID').mockImplementation(throwError)
     await expect(sut.randomUUID()).rejects.toThrow()
   })
 })

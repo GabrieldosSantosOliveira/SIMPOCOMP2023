@@ -1,4 +1,5 @@
 import { BcryptImpl } from '@/infra/cryptography/bcrypt-impl'
+import { throwError } from '@/test/domain/mocks/test-helpers'
 import { faker } from '@faker-js/faker'
 import bcrypt from 'bcrypt'
 jest.mock('bcrypt', () => ({
@@ -32,9 +33,7 @@ describe('BcryptImpl', () => {
     })
     it('should throw error if bcrypt throw error', async () => {
       const { sut } = makeSut()
-      jest.spyOn(bcrypt, 'hash').mockImplementation(() => {
-        throw new Error()
-      })
+      jest.spyOn(bcrypt, 'hash').mockImplementation(throwError)
       await expect(sut.hash(plaintext)).rejects.toThrow()
     })
   })
@@ -58,9 +57,7 @@ describe('BcryptImpl', () => {
     })
     it('should throw error if bcrypt throw error', async () => {
       const { sut } = makeSut()
-      jest.spyOn(bcrypt, 'compare').mockImplementation(() => {
-        throw new Error()
-      })
+      jest.spyOn(bcrypt, 'compare').mockImplementation(throwError)
       await expect(sut.compare(plaintext, digest)).rejects.toThrow()
     })
   })

@@ -1,4 +1,5 @@
 import { EmailValidatorImpl } from '@/infra/validators/email-validator-impl'
+import { throwError } from '@/test/domain/mocks/test-helpers'
 import { faker } from '@faker-js/faker'
 import validator from 'validator'
 
@@ -31,9 +32,7 @@ describe('EmailValidatorImpl', () => {
   it('should throw error if EmailValidatorImpl throw error', async () => {
     const { sut } = makeSut()
     const email = faker.internet.email()
-    jest.spyOn(validator, 'isEmail').mockImplementationOnce(() => {
-      throw new Error()
-    })
+    jest.spyOn(validator, 'isEmail').mockImplementationOnce(throwError)
 
     await expect(sut.isValid(email)).rejects.toThrow()
   })
